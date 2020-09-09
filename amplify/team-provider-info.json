@@ -10,6 +10,14 @@
             "StackName": "amplify-giphlify-dev-111708",
             "StackId": "arn:aws:cloudformation:us-east-1:000691573582:stack/amplify-giphlify-dev-111708/ea30b8e0-f2b7-11ea-82a3-1253d15d20e2",
             "AmplifyAppId": "d2cgkoncgiqgbl"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d2cgkoncgiqgbl",
+                    "type": "cicd"
+                }
+            }
         }
     }
 }
