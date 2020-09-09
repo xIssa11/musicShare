@@ -1,0 +1,17 @@
+{
+    "projectName": "giphlify",
+    "version": "3.0",
+    "frontend": "javascript",
+    "javascript": {
+        "framework": "none",
+        "config": {
+            "SourceDir": "/src",
+            "DistributionDir": "/dist",
+            "BuildCommand": "parcel build index.html",
+            "StartCommand": "parcel serve index.html"
+        }
+    },
+    "providers": [
+        "awscloudformation"
+    ]
+}
