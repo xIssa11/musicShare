@@ -1,6 +1,6 @@
 import Amplify, { API, graphqlOperation } from '@aws-amplify/api'
 
-import awsConfig from '../aws-exports'
+import awsConfig from './aws-exports'
 import { createGif, deleteGif, updateGif } from './graphql/mutations'
 import { listGifs } from './graphql/queries'
 
@@ -87,6 +87,7 @@ document.getElementById('delete-button').addEventListener('click', () => {
   closeModal()
 })
 
-document.getElementById('plus-button').addEventListener('click', () => document.getElementById('create-modal').classList.remove('hidden'))
+document.getElementById('plus-button').addEventListener('click',
+  () => document.getElementById('create-modal').classList.remove('hidden'))
 
 getGifs()
