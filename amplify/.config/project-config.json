@@ -7,7 +7,7 @@
         "config": {
             "SourceDir": "src",
             "DistributionDir": "dist",
-            "BuildCommand": "parcel build index.html",
+            "BuildCommand": "npm run build",
             "StartCommand": "parcel serve index.html"
         }
     },
