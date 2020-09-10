@@ -5,8 +5,8 @@
     "javascript": {
         "framework": "none",
         "config": {
-            "SourceDir": "/src",
-            "DistributionDir": "/dist",
+            "SourceDir": "src",
+            "DistributionDir": "dist",
             "BuildCommand": "parcel build index.html",
             "StartCommand": "parcel serve index.html"
         }
