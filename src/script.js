@@ -40,6 +40,7 @@ const createGifUi = gif => {
   img.setAttribute('src', gif.url)
   img.addEventListener('click', () => populateModal(gif))
   document.querySelector('.container').appendChild(img)
+  closeCreateModal()
 }
 
 const getGifs = async () => {
