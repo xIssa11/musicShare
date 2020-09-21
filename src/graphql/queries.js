@@ -5,7 +5,7 @@ export const getGif = /* GraphQL */ `
   query GetGif($id: ID!) {
     getGif(id: $id) {
       id
-      name
+      altText
       url
       createdAt
       updatedAt
@@ -21,7 +21,7 @@ export const listGifs = /* GraphQL */ `
     listGifs(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
+        altText
         url
         createdAt
         updatedAt

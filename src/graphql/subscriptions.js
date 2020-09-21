@@ -5,7 +5,7 @@ export const onCreateGif = /* GraphQL */ `
   subscription OnCreateGif {
     onCreateGif {
       id
-      name
+      altText
       url
       createdAt
       updatedAt
@@ -16,7 +16,7 @@ export const onUpdateGif = /* GraphQL */ `
   subscription OnUpdateGif {
     onUpdateGif {
       id
-      name
+      altText
       url
       createdAt
       updatedAt
@@ -27,7 +27,7 @@ export const onDeleteGif = /* GraphQL */ `
   subscription OnDeleteGif {
     onDeleteGif {
       id
-      name
+      altText
       url
       createdAt
       updatedAt

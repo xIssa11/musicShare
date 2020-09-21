@@ -10,13 +10,14 @@ let currentGifId = ''
 
 const editGif = async () => {
   try {
-    return await API.graphql(graphqlOperation(updateGif, {
+    await API.graphql(graphqlOperation(updateGif, {
       input: {
         id: currentGifId,
-        name: document.getElementById('edit-name').value,
+        altText: document.getElementById('edit-altText').value,
         url: document.getElementById('edit-url').value
       }
     }))
+    getGifs()
   } catch (err) {
     console.error(err)
   }
@@ -31,7 +32,7 @@ const removeGif = async () => {
 const populateModal = gif => {
   currentGifId = gif.id
   document.getElementById('edit-modal').classList.remove('hidden')
-  document.getElementById('edit-name').value = gif.name
+  document.getElementById('edit-altText').value = gif.altText
   document.getElementById('edit-url').value = gif.url
 }
 
@@ -54,7 +55,7 @@ const createNewGif = async e => {
   e.preventDefault()
 
   const gif = {
-    name: document.getElementById('name').value,
+    altText: document.getElementById('altText').value,
     url: document.getElementById('url').value
   }
 
@@ -77,7 +78,6 @@ document.getElementById('create-form').addEventListener('submit', createNewGif)
 document.getElementById('edit-form').addEventListener('submit', e => {
   e.preventDefault()
   editGif()
-  getGifs()
   closeModal()
 })
 

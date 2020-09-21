@@ -8,7 +8,7 @@ export const createGif = /* GraphQL */ `
   ) {
     createGif(input: $input, condition: $condition) {
       id
-      name
+      altText
       url
       createdAt
       updatedAt
@@ -22,7 +22,7 @@ export const updateGif = /* GraphQL */ `
   ) {
     updateGif(input: $input, condition: $condition) {
       id
-      name
+      altText
       url
       createdAt
       updatedAt
@@ -36,7 +36,7 @@ export const deleteGif = /* GraphQL */ `
   ) {
     deleteGif(input: $input, condition: $condition) {
       id
-      name
+      altText
       url
       createdAt
       updatedAt
