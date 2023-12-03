@@ -1,0 +1,26 @@
+{
+  "main": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-giphlify-main-33721-authRole",
+      "UnauthRoleArn": "arn:aws:iam::908962261904:role/amplify-giphlify-main-33721-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::908962261904:role/amplify-giphlify-main-33721-authRole",
+      "Region": "ca-central-1",
+      "DeploymentBucketName": "amplify-giphlify-main-33721-deployment",
+      "UnauthRoleName": "amplify-giphlify-main-33721-unauthRole",
+      "StackName": "amplify-giphlify-main-33721",
+      "StackId": "arn:aws:cloudformation:ca-central-1:908962261904:stack/amplify-giphlify-main-33721/44a27da0-918d-11ee-8fc3-0ea565fa1a26",
+      "AmplifyAppId": "d1zwgz6w18v6dp"
+    },
+    "categories": {
+      "auth": {
+        "musicsharec3a14c36": {}
+      },
+      "api": {
+        "giphlify": {}
+      },
+      "storage": {
+        "tunelify": {}
+      }
+    }
+  }
+}

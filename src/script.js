@@ -1,93 +1,33 @@
-import Amplify, { API, graphqlOperation } from '@aws-amplify/api'
+import config from './aws-exports';
+import { Amplify, Storage } from 'aws-amplify';
+Amplify.configure(config);
 
-import awsConfig from './aws-exports'
-import { createGif, deleteGif, updateGif } from './graphql/mutations'
-import { listGifs } from './graphql/queries'
-
-Amplify.configure(awsConfig)
-
-let currentGifId = ''
-
-const editGif = async () => {
-  try {
-    await API.graphql(graphqlOperation(updateGif, {
-      input: {
-        id: currentGifId,
-        altText: document.getElementById('edit-altText').value,
-        url: document.getElementById('edit-url').value
-      }
-    }))
-    getGifs()
-  } catch (err) {
-    console.error(err)
-  }
+const createAudioPlayer = track => {
+  Storage.get(track.key).then(result => {
+    const audio = document.createElement('audio')
+    const source = document.createElement('source')
+    audio.appendChild(source)
+    audio.setAttribute('controls', '')
+    source.setAttribute('src', result)
+    source.setAttribute('type', 'audio/mpeg')
+    document.querySelector('.tracks').appendChild(audio)
+  })
 }
 
-const removeGif = async () => {
-  await API.graphql(graphqlOperation(deleteGif, {
-    input: { id: currentGifId }
-  }))
-}
-
-const populateModal = gif => {
-  currentGifId = gif.id
-  document.getElementById('edit-modal').classList.remove('hidden')
-  document.getElementById('edit-altText').value = gif.altText
-  document.getElementById('edit-url').value = gif.url
-}
-
-const createGifUi = gif => {
-  const img = document.createElement('img')
-  img.setAttribute('src', gif.url)
-  img.addEventListener('click', () => populateModal(gif))
-  document.querySelector('.container').appendChild(img)
-  closeCreateModal()
-}
-
-const getGifs = async () => {
-  const container = document.querySelector('.container')
-  container.innerHTML = ''
-  const gifs = await API.graphql(graphqlOperation(listGifs))
-  gifs.data.listGifs.items.map(createGifUi)
-}
-
-const createNewGif = async e => {
+document.getElementById('upload-form').addEventListener('submit', e => {
   e.preventDefault()
-
-  const gif = {
-    altText: document.getElementById('altText').value,
-    url: document.getElementById('url').value
-  }
-
-  try {
-    await API.graphql(graphqlOperation(createGif, { input: gif }))
-    document.getElementById('create-form').reset()
-    getGifs()
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-const closeModal = () => document.getElementById('edit-modal').classList.add('hidden')
-const closeCreateModal = () => document.getElementById('create-modal').classList.add('hidden')
-
-document.getElementById('close-edit-button').addEventListener('click', closeModal)
-document.getElementById('close-create-button').addEventListener('click', closeCreateModal)
-
-document.getElementById('create-form').addEventListener('submit', createNewGif)
-document.getElementById('edit-form').addEventListener('submit', e => {
-  e.preventDefault()
-  editGif()
-  closeModal()
+  const file = document.getElementById('file-upload').files[0]
+  Storage.put(file.name, file)
+    .then(result => {
+      createAudioPlayer(result)
+    })
+    .catch(err => console.error(err))
 })
 
-document.getElementById('delete-button').addEventListener('click', () => {
-  removeGif()
-  getGifs()
-  closeModal()
-})
+Storage.list('')
+  .then(result => {
+    result.forEach(item => createAudioPlayer(item))
+  })
+  .catch(err => console.error(err))
 
-document.getElementById('plus-button').addEventListener('click',
-  () => document.getElementById('create-modal').classList.remove('hidden'))
 
-getGifs()
